@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="sticky-top">
+  <span class="navbar-button">ICONO</span>
+  <button class="navbar-button" mat-button routerLink="welcome">Inicio</button>
+  <button class="navbar-button" mat-button routerLink="conversions">Conversiones</button>
+  <button class="navbar-button" mat-button routerLink="date">Fechas</button>
+  <button class="navbar-button" mat-button routerLink="form">Formulario</button>
+  <span class="example-spacer"></span>
+  <button class="navbar-button" mat-button (click)="logout()">Salir</button>
+</mat-toolbar>
+<router-outlet></router-outlet>

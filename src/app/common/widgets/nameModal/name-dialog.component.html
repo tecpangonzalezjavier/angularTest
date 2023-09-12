@@ -1,0 +1,13 @@
+<div mat-dialog-title>
+    <div style="color: black">Ingresa tu nombre</div>
+</div>
+<mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Ingresa el nombre" [(ngModel)]="nombre">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">CANCELAR</button>
+    <button mat-raised-button color="primary" (click)="save()">ACEPTAR</button>
+</mat-dialog-actions>

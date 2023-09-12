@@ -1,0 +1,44 @@
+<div class="container-fluid background">
+  <div class="container mt-4">
+    <mat-card class="background-content">
+      <mat-card-header>
+        <span class="title">Fechas</span>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="container mt-4">
+          <!-- Selector de fecha -->
+          <div class="form-group">
+            <label for="datePicker">Selecciona una fecha:</label>
+            <input type="date" class="form-control" id="datePicker" name="datePicker" [(ngModel)]="selectedDate">
+          </div>
+
+          <!-- Selector de unidad (día, mes, año) -->
+          <div class="form-group">
+            <label for="unitSelector">Selecciona una unidad:</label>
+            <select class="form-control" id="unitSelector" name="unitSelector" [(ngModel)]="selectedUnit">
+              <option value="day">Día</option>
+              <option value="month">Mes</option>
+              <option value="year">Año</option>
+            </select>
+          </div>
+
+          <!-- Input para la cantidad -->
+          <div class="form-group">
+            <label for="quantityInput">Cantidad:</label>
+            <input type="number" class="form-control" id="quantityInput" name="quantityInput" [(ngModel)]="quantity">
+          </div>
+
+          <!-- Botón para enviar el formulario -->
+          <button type="button" class="btn btn-primary" (click)="submitForm()">Aceptar</button>
+        </form>
+
+        <div class="container text-center " *ngIf="FinalDate">
+          <span class="result">El resultado fue {{FinalDate.toISOString() | date: "dd MMM yyyy": "GMT" }}</span>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+</div>

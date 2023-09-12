@@ -1,0 +1,85 @@
+<div class="container-fluid background">
+  <div class="container mt-4">
+    <mat-card class="background-content">
+      <mat-card-header class="title mb-3">
+        Formulario
+      </mat-card-header>
+      <mat-card-content>
+        <form class="container-fluid" [formGroup]="FormGroup">
+
+          <!-- Nombres -->
+          <div class="form-group">
+            <mat-form-field appearance="fill" style="width: 100%" >
+              <mat-label>Nombres</mat-label>
+              <input matInput type="text" id="names" formControlName="names">
+              <mat-error *ngIf="FormGroup.get('names')?.hasError('required')">Nombres son obligatorios</mat-error>
+              <mat-error *ngIf="FormGroup.get('names')?.hasError('trailingSpace')">No debe haber espacios al final</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Apellidos -->
+          <div class="form-group">
+            <mat-form-field style="width: 100%">
+              <mat-label>Apellidos</mat-label>
+              <input matInput type="text" id="apellidos" formControlName="last_names">
+              <mat-error *ngIf="FormGroup.get('last_names')?.hasError('required')">Apellidos son obligatorios</mat-error>
+              <mat-error *ngIf="FormGroup.get('last_names')?.hasError('trailingSpace')">No debe haber espacios al final</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Estado Civil -->
+          <div class="form-group">
+            <mat-form-field style="width: 100%">
+              <mat-label>Estado Civil</mat-label>
+              <mat-select formControlName="civil_status">
+                <mat-option *ngFor="let stat of status" [value]="stat.value">
+                  {{stat.label}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <!-- Checkbox ¿Fumas? -->
+          <div class="form-group">
+            <mat-checkbox formControlName="smoke">¿Fumas?</mat-checkbox>
+          </div>
+
+          <mat-checkbox formControlName="reading">¿Actualmente practicas lectura?</mat-checkbox>
+
+          <div class="form-group books-list" *ngIf="FormGroup.get('reading')?.value">
+            <span class="title">Agrega los libros que has leido en los ultimos 3 meses</span>
+            <div class="form-group">
+              <div formArrayName="books">
+                <div *ngFor="let bookForm of books.controls; let i = index">
+                  <div class="form-group" [formGroup]="getFormGroup(bookForm)">
+                    <mat-form-field appearance="fill">
+                      <input matInput
+                             formControlName="title"
+                             placeholder="Titulo del libro">
+                    </mat-form-field>
+                    <mat-icon class="delete-btn" (click)="deleteBook(i)">
+                      delete_forever
+                    </mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-2">
+                  <button mat-raised-button class="transparent-button" (click)="addBook()">
+                    <span>Agregar Libro</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="transparent-button" mat-raised-button color="primary" (click)="enviarFormulario()">Enviar</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
